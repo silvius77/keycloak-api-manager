@@ -66,4 +66,4 @@ Method **Update_user** with parameter _**payload**_ и  **_user_id_** <br/>
 
 ____
 
-All functions see on page Documentation
+### All functions see on page [Documentation](https://github.com/martinlauren55/keycloakAPI/blob/main/DOCS/DOCS.md)
