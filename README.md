@@ -13,7 +13,7 @@ API for Keycloak management
 
 ## Quickstart
 
-Create a file **keykloak_test.py** with:
+Create a file **keycloak_test.py** with:
 
 ```
 from KeycloakAPI import KeycloakAPI
@@ -33,7 +33,7 @@ keycloak_api = KeycloakAPI(keycloak_url=SERVER_URL, realm_name=REALM_NAME,
 about_me = keycloak_api.get_info_about_me()
 print(about_me)
 ```
-
+Run a file: **python keycloak_test.py**
 
 ___
 
