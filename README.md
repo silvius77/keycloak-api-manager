@@ -62,3 +62,8 @@ Method **Update_user** with parameter _**payload**_ и  **_user_id_** <br/>
             "testKey": "testValue"
         }
     }
+
+
+____
+
+All functions see on page Documentation
