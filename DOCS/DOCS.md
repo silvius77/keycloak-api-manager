@@ -26,7 +26,7 @@ print(about_me)
 ```
 
 ### Run it
-Run a file: ```python keycloak_test.py```
+Run a file: ```main.py```
 
 
 # All functions
