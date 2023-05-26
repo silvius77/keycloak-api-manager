@@ -2,7 +2,7 @@ import json
 import requests
 
 
-class KeycloakAPI:
+class KeycloakAPIManager:
     def __init__(self, keycloak_url, realm_name, client_id, client_secret, admin_username, admin_password):
         """
         :param keycloak_url: KEYCLOAK URL (http://localhost:8080/auth/, or http://server_url/auth/)
@@ -62,10 +62,10 @@ class KeycloakAPI:
         headers = {"Authorization": "Bearer " + self._access_token}
         return requests.get(url=url, headers=headers).json()
 
-    def get_user(self, user_id):
+    def get_user(self, user_id: str) -> bool:
         """
         :param user_id: KEYCLOAK ID
-        :return: KEYCLOAK USER ID
+        :return: info about user
         """
         url = f"{self._keycloak_url}admin/realms/{self._realm_name}/users/{user_id}"
         headers = {"Authorization": "Bearer " + self._access_token}
@@ -75,7 +75,7 @@ class KeycloakAPI:
         """
         :param attributes: {'key1': 'value1', 'key2': 'value2'}
         :param user_id: KEYCLOAK USER ID
-        :return:
+        :return: bool
         """
         attr = dict()
         for k, v in self.get_user_attributes(user_id=user_id).items():
@@ -88,7 +88,7 @@ class KeycloakAPI:
         """
         :param attributes:  list -> ['phone', 'newTest']
         :param user_id: KEYCLOAK USER ID
-        :return:
+        :return: bool
         """
         attr = dict()
         for k, v in self.get_user_attributes(user_id=user_id).items():
@@ -97,7 +97,7 @@ class KeycloakAPI:
             del attr[key]
         return self.update_user(payload={"attributes": attr}, user_id=user_id)
 
-    def get_user_attributes(self, user_id):
+    def get_user_attributes(self, user_id: str):
         """
         :parame user_id: KEYCLOAK ID
         :return: KEYCLOAK USER attributes
@@ -116,11 +116,11 @@ class KeycloakAPI:
         headers = {"Authorization": "Bearer " + self._access_token}
         return requests.get(url=url, headers=headers).json()
 
-    def create_user(self, payload: dict):
+    def create_user(self, payload: dict) -> bool:
         """
         :param payload: Dict with params {"username": "some_user", "enabled": True,
         "credentials": [{"temporary": False, "value": "raw_password"}]}
-        :return: KEYCLOAK USER ID
+        :return: bool
         """
         url = f"{self._keycloak_url}admin/realms/{self._realm_name}/users"
         headers = {"Authorization": "Bearer " + self._access_token, "Content-Type": "application/json",
@@ -133,7 +133,7 @@ class KeycloakAPI:
             raise Exception(response.text)
 
     def create_identity_provider_links_for_user(self, provider_identity: str, provider_user_id: str,
-                                                provider_username: str, user_id: str):
+                                                provider_username: str, user_id: str) -> bool:
         """
         :param provider_identity: Identity Provider Alias (from method get_identity_providers)
         :param provider_user_id: Provider User ID
@@ -166,9 +166,9 @@ class KeycloakAPI:
 
     def update_user(self, payload, user_id: str) -> bool:
         """
-        :param payload: POST REQUEST PAYLOAD
+        :param payload:
         :param user_id: KEYCLOAK ID
-        :return: KEYCLOAK USER ID
+        :return: bool
         """
         url = f"{self._keycloak_url}admin/realms/{self._realm_name}/users/{user_id}"
         headers = {"Authorization": "Bearer " + self._access_token, "Content-Type": "application/json",
