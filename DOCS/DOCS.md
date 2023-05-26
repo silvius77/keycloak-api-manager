@@ -373,8 +373,7 @@ _**example:**_
 
 _**example:**_
 
-     delete_user_attributes(attributes=['key1'], 
-                            user_id="43f1bd77-effb-4f98-8c22-5ad8145ebf0d")
+     get_realm_clients()
 **_output:_**
 ```
 [{'access': {'configure': True, 'manage': True, 'view': True},
