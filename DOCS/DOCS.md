@@ -137,9 +137,7 @@ True
 
 ### update_user
 **_params:_**  
-provider_identity (str) - Identity Provider Alias (from method _get_identity_providers_)</br>
-provider_user_id (str) - Provider User ID</br>
-provider_username (str) - Provider Username</br>
+payload (dict) -  ```{'email': 'vasyapup011@gmail.com'}```<br/>
 user_id (str) - KEYCLOAK USER ID</br>
 
 - return bool
