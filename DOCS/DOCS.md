@@ -209,7 +209,7 @@ _**example:**_
 **_params:_**  
 user_id (str) - KEYCLOAK ID </br>
 
-- return user attributes
+- return (dict) user attributes
 
 
 _**example:**_
@@ -218,7 +218,7 @@ _**example:**_
 
 **_output:_**
 ```
-{'testkey': ['testvalue']}
+{'testkey': 'testvalue'}
 ```
 <br/>
 

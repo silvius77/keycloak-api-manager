@@ -62,7 +62,7 @@ class KeycloakAPIManager:
         headers = {"Authorization": "Bearer " + self._access_token}
         return requests.get(url=url, headers=headers).json()
 
-    def get_user(self, user_id: str) -> bool:
+    def get_user(self, user_id: str):
         """
         :param user_id: KEYCLOAK ID
         :return: info about user
@@ -103,8 +103,11 @@ class KeycloakAPIManager:
         :return: KEYCLOAK USER attributes
         """
         user = self.get_user(user_id=user_id)
-        if "attributes" in user.keys():
-            return user['attributes']
+        if "attributes" in user:
+            user_attr = {}
+            for k, v in user.get('attributes').items():
+                user_attr[k] = v[0]
+            return user_attr
         else:
             return None
 
